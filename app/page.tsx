@@ -7,6 +7,13 @@ function getTodos() {
   return prisma.todo.findMany();
 }
 
+// Below we will create a function to update the todo in our db
+async function toggleTodo(id: string, complete: boolean) {
+  "use server";
+
+  await prisma.todo.update({ where: { id }, data: { complete } });
+}
+
 export default async function Home() {
   const todos = await getTodos();
   //const todos = await prisma.todo.findMany(); // Calling server code in the component
@@ -31,7 +38,7 @@ export default async function Home() {
       {/* Section where UL list of todos will be going */}
       <ul className="pl-4">
         {todos.map((todo) => (
-          <TodoItem key={todo.id} {...todo} /> // The {...todo} passes in all the todo information into the TodoItem component
+          <TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo} /> // The {...todo} passes in all the todo information into the TodoItem component
         ))}
       </ul>
     </>
