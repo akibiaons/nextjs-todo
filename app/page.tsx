@@ -12,17 +12,10 @@ function getTodos() {
   });
 }
 
-// Below is function for deleting completed todos
-// async const completeTodo = await prisma.todo.delete({
-//   where: {
-//     id: {
-//       in: todo.map((a) => a.id),
-//     },
-//   },
-// });
-// // Below is a function that deleted if the todo complete = true...
-// function completeTodo() {
-//   return prisma.todo.delete();
+// Below is the onComplete functionw which refreshes the page based on the trigger of the onComplete / checked tasks...
+// function onComplete(complete = true) {
+//   "use client";
+//   const
 // }
 
 // The toggleTodo function below makes sure that the slected or deselected todo is remembered.. this doesen't create todos...
@@ -62,7 +55,7 @@ export default async function Home() {
             key={todo.id}
             {...todo}
             toggleTodo={toggleTodo}
-            // complete={complete}
+            //onComplete={onComplete} Attempting to make a trigger to call the onComplete function to execute and refresh the page. Although, I cna use action={} instead..
           /> // The {...todo} passes in all the todo information into the TodoItem component
         ))}
       </ul>
